@@ -1,0 +1,29 @@
+package main
+
+import (
+	"flag"
+	"net/http"
+	"os"
+)
+
+var (
+	httpAddr = flag.String("httpAddr", "0.0.0.0:9901", "httpAddr")
+	grpcAddr = flag.String("grpcAddr", "0.0.0.0:9900", "grpc addr")
+)
+
+func loadEnv() {
+	*grpcAddr = os.Getenv("grpcAddr")
+	*httpAddr = os.Getenv("httpAddr")
+}
+func main() {
+	loadEnv()
+	http.HandleFunc("/ping", func(writer http.ResponseWriter, request *http.Request) {
+		writer.Write([]byte(*grpcAddr))
+	})
+	http.ListenAndServe(*httpAddr,nil)
+	//r := gin.Default()
+	//r.GET("/", func(c *gin.Context) {
+	//	c.String(200, *grpcAddr)
+	//})
+	//r.Run(*httpAddr) // listen and serve on 0.0.0.0:8080
+}
