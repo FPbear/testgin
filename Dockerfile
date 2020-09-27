@@ -12,7 +12,6 @@ RUN export PATH=$PATH:/usr/local/go/bin
 #ENV GOPATH /usr/local/go/bin
 RUN echo $GOROOT
 RUN echo $PATH
-RUN go version
 ENV dir /root/testgin
 WORKDIR $dir
 COPY . $dir
