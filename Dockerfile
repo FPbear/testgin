@@ -1,8 +1,8 @@
 #源镜像
-#FROM golang:latest
-FROM daocloud.io/library/centos:latest
-FROM daocloud.io/golang:1.3-onbuild
-#FROM centos
+FROM golang:latest
+#FROM daocloud.io/library/centos:latest
+#FROM daocloud.io/golang:1.3-onbuild
+FROM centos
 #作者
 MAINTAINER fpbear 1158066739@qq.com
 #设置工作目录
